@@ -180,7 +180,158 @@ Figure \ref{fig:mem} shows the MP-neuron representation of a memory cell. A memo
 
 \section{Learning rules of the Artificial Neural Networks. Hebb’s Rule.}
 \subsection{}
+Learning rules define how the weights of connections between neurons can be changed. If used during unsupervised learning, the aim is to reflect the network experience. For supervised, the aim of changing the weights is to get a desirable output. If unsupervised, the aim is to reflect the network experience.
 
+There are a variety of different learning rules that can be used on ANN. These include: the Hebbian rule which identifies how the weights of a network can be modified, the correlation rule, the Delta rule and more.
+
+\subsection{}
+In his 1949 book, `The Organization of Behaviour' \cite{hebb2005}, Hebb introduced the Hebbian Theory. He proposed that a particular type of use-dependent modification
+of the connection strength of synapses might underlie learning in the nervous
+system.
+
+His formula can be simplified to the following method: The weight of connection at every next instance is increased such that:
+\[w_{ji}^{k+1} = w_{ji}^k + \Delta w_{ji}^k,\]
+
+where \[\Delta w_{ji}^k = Ca_i^kX_j^k.\]
+
+In these equations,
+
+\(w_{ji}^k\) is the weight of the connection at an intant \(k\).
+
+\(w_{ji}^{k+1}\) is the weight of the connection at the next instant (\(k+1\)).
+
+\(\Delta w_{ji}^k\) is the increment that the connection weight is increased by.
+
+\(C\) is the positive coefficient that determines learning rate.
+
+\(a_i^k\) is the input value from the presynaptic neuron at an instant \(k\).
+
+\(X_j^k\) is the output of the postsynaptic neuron at the same instant \(k\).
+\linebreak
+
+The weight of a connection changes iff the preceding input via the connection and the resulting output are simultaneously both \(\neq 0\).
+\subsection{}
+The correlation nature of a Hebb synapse is shown in the equation \[w_{ji}^{k+1} = w_{ji}^k + \Delta w_{ji}^k,\] For this reason is can be referred to as the activity product rule.
+
+\subsection{}
+The Hebbian rule represents unsupervised learning of an artificial network. There is no target output, and the weight of a connection changes according to the neuron's `experience'. As seen in section 3(a), this describes a learning rule for unsupervised learning.
+
+\subsection{}
+\begin{tabular}{| c | c | c | c | c | c | c |}
+    \hline
+    time step & \(a_1\) & \(a_2\) & \(a_3\) & \(w_1^t\) & \(w_2^t\) & \(w_3^t\) \\ [0.5ex]
+    \hline\hline
+    1         & 1       & 0       & 0       & -1        & 2         & -1        \\
+    \hline
+    2         & 0       & 1       & 0       & -1        & 2         & -1        \\
+    \hline
+    3         & 1       & 1       & 1       & -1        & 2.25      & -1        \\
+    \hline
+\end{tabular}
+\begin{tabular}{| c | c | c | c | c | c | c |}
+    \hline
+    \(X\) & \(\Delta w_1\) & \(\Delta w_2\) & \(\Delta w_3\) & \(w_1^{t+1}\) & \(w_2^{t+1}\) & \(w_3^{t+1}\) \\ [0.5ex]
+    \hline\hline
+    0     & 0              & 0              & 0              & -1            & 2             & -1            \\
+    \hline
+    1     & 0              & 0.25           & 0              & -1            & 2.25          & -1            \\
+    \hline
+    0     & 0              & 0              & 0              & -1            & 2.25          & -1            \\
+    \hline
+\end{tabular}
+
+\begin{enumerate}
+    \renewcommand{\theenumi}{\roman{enumi}}
+    \item At \(t=1\), an inhibitory connection is fired (\(a_1\) with \(w_1^t = -1\)) so the value for \(X\) was 0. If \(X = 0\), then all values of \(\Delta w_i\) will be 0 because they are formed from a multiple of \(X\). As a result of this, all the weights will be the same in the next time step.
+    \item At \(t=2\), no inhibitory connections are fired and the sum of the fired inputs is greater than the threshold (\(\theta \geq 1\)). The neuron will therefore fire so \(X = 1\). This can be used to compute \(\Delta w_2 = 0.25\) but the remaining two \(\Delta w_i\) are still 0 as they are multiples of their inputs which are also 0. The \(\Delta w_2\) value can then be added to the old weight to form the weight for the next timestamp.
+    \item \(t=3\) is similair to \(t=1\) in that there is an inhibitory connection so \(X = 0\). For the reasons explained in 3(e)i), the weight values will all carry through to the next timestamp. There will be no increase/ decrease in the weight values as all \(\Delta w_i = 0\).
+\end{enumerate}
+
+\section{N/A}
+\section{N/A}
+\section{Genetic Algorithms.}
+\subsection{}
+The famous book, `On the Origin of Species' \cite{darwin1859}, written by Darwin in 1859 is considered the foundation of evolutionary biology. He introduced the idea that species can adapt to an environment using natural selection and survival of the fittest.
+
+Each individual member of the population is tested by environmental and social challenges. The concept of all members being individually tested in parallel is obviously an exciting concept to computer scientists as it promises a faster optimisation of a population than a sequential method.
+
+The population must individually adapt to the environment, resulting in an overall optimised population. This can easily be seen mirrored in genetic algorithms as a population of candidate solutions faces individual adaption (by genetic operators) to optimise the population as a whole.
+
+Due to natural selection and survival of the fittest, only the candidates that are best fit to the environment survive and reproduce to pass on their genes to the next generation. This selection process causes optimisation on both an individual and population-wide level.
+
+The success of paralellism, adaption and optimisation in a natural environment is strong encouragement that these concepts could be useful in a computer science setting. In the 1950s - 60s, the first experiments into using evelotionary algorithms to solve computer science problems were being conducted. Genetic algorithms themselves, were not realised until Holland and his colleagues work on the subject in the 1960s. He first presented genetic algorithms in his 1975 book: Adaptation in Natural and Artificial Systems \cite{Holland1975}.
+
+\subsection{}
+\begin{enumerate}
+    \item Randomly generate a population of chromosomes (n bit strings)
+    \item Evaluate the fitness of each chromosome i.e the number of 1s in the string.
+    \item Repeat until next generation of n individual chromosomes are produced:
+
+          a) Select a pair of parent chromones. The chromosomes with higher fitnesses
+          should be selected most often.
+
+          b) Apply crossover with probability
+
+          c) Apply mutation with probability of occurrence
+    \item Apply generational replacement.
+    \item If termination condition is not met, return to 2.
+\end{enumerate}
+
+Step 1 attempts to emulate a natural population as chromosomes while step 2 is evaluating the `fitness' of each indervidual (survival of the fittest). Step 3 then shows the process of surviving and reproducing to produce a second generation, ideally more optimised than the previous. Step 4 speaks for itself and the cycle is repeated (as is the process of natural selection) until the optimisation goal is achieved.
+
+\subsection{}
+Schemas, often called the building blocks of the chromosome, are similarity templates that describe a subset of strings with similarities at different positions. They utilize the characters 0, 1 and * where a 1 or 0 means that the corresponding but must be the same. A * (or \#) is a `do not care’ symbol so in this case, either a 0 or 1 could be a match. For example, 11*1 could match 1101 or 1111.
+
+To match a chromosome of length N, the scheme must be the same length and each symbol must either be the same as the symbol in the chromosome at the same location or a do not care symbol (*). Therefore, for a chromosome of length \(N\) there are \(2^N\) schemas. For example, the chromosome 100 has \(2^3 = 8\) schemas.
+
+The order of a schema is the number of symbols it contains that are not `do not care’ symbols. For example, the schema 110**0 has an order of 4.
+
+The defining length is the distance between the outermost non-`do not care’ symbols so 2 for **0110* and 0 for *11*. You can compare defining lengths to each other. For example, the defining length of *11* is less than that of **0110*.
+
+\subsection{}
+\begin{tabular}{| c | c | c |}
+    \hline
+    schema & order & def. length \\ [0.5ex]
+    \hline\hline
+    IQ     & 2     & 0           \\
+    \hline
+    *Q     & 1     & 0           \\
+    \hline
+    I*     & 1     & 0           \\
+    \hline
+    **     & 0     & 0           \\
+    \hline
+\end{tabular}
+
+\subsection{}
+\begin{enumerate}
+    \renewcommand{\theenumi}{\roman{enumi}}
+    \item The average fitness of the schema 011* can be calculated using all possible strings for that schema:
+    
+    \(0110 \Rightarrow f(0110) = 2\)
+
+    \(0111 \Rightarrow f(0111) = 3\)
+
+    The average can then be found:
+
+    \((2+3)/2 = 2.5\)
+
+    So the average fitness of the schema \(f(011^*) = 2.5\)
+
+    \item Using the same method as above, fitness of all possible bit strings are listed below:
+    
+    \(0101 \Rightarrow f(0101) = 2\)
+
+    \(0100 \Rightarrow f(0100) = 1\)
+
+    \(0001 \Rightarrow f(0001) = 1\)
+
+    \(0000 \Rightarrow f(0000) = 0\)
+
+    \((2+1+1+0)/4 = 1\)
+
+    As such, the average fitness of the schema \(f(0^*0^*) = 1\)
+\end{enumerate}
 \renewcommand\bibname{References}
 \bibliographystyle{IEEEtran}
 \bibliography{refs}
